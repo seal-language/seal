@@ -1,9 +1,9 @@
 #pragma once
 
-////////////////////////////////////////////////////////////////////
-//         S E A L  P R O G R A M M I N G  L A N G U A G E
+/////////////////////////////////////////////////////////////////////////////
+//         S E A L  P R O G R A M M I N G  L A N G U A G E (seal-lang.org)
 //  
-//  seal.leixcal.token.h : 
+//  seal.lexical.token.h : 
 //       @description :  This header folder defines the token required by leixcal
 //       @birth       :  2021/2.15
 //       @operator    :  Margoo
@@ -15,7 +15,7 @@
 //          @description :   Enumerate tokens required for seal lexical analysis
 //          @birth       :   2021/2.15
 //          @operator    :   Margoo
-typedef enum _leixcal_token {
+typedef enum _lexical_token {
 	NO_STATUS_TOKEN = (int)0,
 
 	UNKNOW_TOKEN,

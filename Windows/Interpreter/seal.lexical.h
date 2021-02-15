@@ -1,7 +1,7 @@
 #pragma once
 
-////////////////////////////////////////////////////////////////////
-//         S E A L  P R O G R A M M I N G  L A N G U A G E
+/////////////////////////////////////////////////////////////////////////////
+//         S E A L  P R O G R A M M I N G  L A N G U A G E (seal-lang.org)
 //  
 //  seal.leixcal.h : 
 //       @description :  This header file defines the token cutting in seal's lexical analyzer
@@ -9,7 +9,7 @@
 //       @operator    :  Margoo
 //
 
-#include "seal.leixcal.token.h"
+#include "seal.lexical.token.h"
 #include "seal.info.h"
 
 #include <string>
@@ -42,24 +42,123 @@ typedef struct _lexical_info{
 	//          @birth       :   2021/2.15
 	//          @operator    :   Margoo
 	//
-	typedef struct _leixcal_token_type {
+	typedef struct _lexical_token_type {
 		// Temporary token
-		_leixcal_token cache_token = NO_STATUS_TOKEN;
+		_lexical_token cache_token = NO_STATUS_TOKEN;
 		// Token's string
 		std::string token_string = "";
 	} seal_leixcal_token;
 
-	_leixcal_token_type lexical_token;
+	_lexical_token_type lexical_token;
 } seal_leixcal_type_info;
 
 ///////////////////////////////////////////////////////////////
-//   _leixcal[typedef with seal_leixcal] :
+//   _lexical_core[typedef with seal_leixcal] :
 //          @description :   Token split core
 //          @birth       :   2021/2.15
 //          @operator    :   Margoo
-typedef class _leixcal_core {
+typedef class _lexical_core {
 private:
 	// Define info class
 	seal_leixcal_type_info core_info;
 
+	// Is or not update line
+	bool lexical_update_line = false;
+
+public:
+	//////////////////////////////////////////////////////////////////////////
+	//    _leixcal_core[constructor]  :
+	//           @description :   The default constructor of lexical core
+	//           @birth       :   2021/2.15
+	//           
+	//           
+	_lexical_core(std::string core_code = "") {
+		core_info.lexical_code = core_code;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//    get_token  :
+	//           @description :   Cut a token from code_string
+	//           @birth       :   2021/2.15
+	//           
+	//           
+	_lexical_info::seal_leixcal_token get_token() {
+		if (lexical_update_line == true) {
+			++core_info.lexical_line;
+		}
+
+		// Init core_info
+		core_info.lexical_token.cache_token  = NO_STATUS_TOKEN;
+		core_info.lexical_token.token_string = "";
+
+		// Traverse string
+		for (; core_info.lexical_index < core_info.lexical_code.size(); ++core_info.lexical_index) {
+			// Skip null characters
+			if (core_info.lexical_code[core_info.lexical_index] == '\t' ||
+				core_info.lexical_code[core_info.lexical_index] == ' ' ||
+				core_info.lexical_code[core_info.lexical_index] == '\n') {
+				++core_info.lexical_index;
+
+				// If there is a newline
+				if (core_info.lexical_code[core_info.lexical_index - 1] == '\n') {
+					if (core_info.lexical_token.cache_token != NO_STATUS_TOKEN) {
+						lexical_update_line = true;
+					}
+					else {
+						++lexical_update_line;
+
+						continue;
+					}
+				}
+			}
+
+			// If is symbol
+			if (_MACRO_IS_SYMBOL_(core_info.lexical_code[core_info.lexical_index])) {
+				// Determine mandatory characters
+				if (core_info.lexical_code[core_info.lexical_index] == '=') {
+					++core_info.lexical_index;
+
+					core_info.lexical_token.token_string = "=";
+
+					// If there is a continuous
+					if (core_info.lexical_index < core_info.lexical_code.size() &&
+						(core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '=' ||
+						 core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '>' ||
+						 core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '<'
+						)
+						) {
+						// Set string variable
+						core_info.lexical_token.token_string += core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]];
+
+						break;
+					}
+					else {
+						--core_info.lexical_index;
+
+						break;
+					}
+				}
+				if (core_info.lexical_code[core_info.lexical_index] == '<' ||
+					core_info.lexical_code[core_info.lexical_index] == '>') {
+					core_info.lexical_token.token_string = core_info.lexical_code[core_info.lexical_index];
+
+					++core_info.lexical_index;
+
+					// If there is a continuous
+					if (core_info.lexical_index < core_info.lexical_code.size() &&
+						core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '=') {
+						core_info.lexical_token.token_string += '=';
+
+						break;
+					}
+					else {
+						--core_info.lexical_index;
+
+						break;
+					}
+				}
+
+			}
+		}
+	}
 } seal_leixcal;
