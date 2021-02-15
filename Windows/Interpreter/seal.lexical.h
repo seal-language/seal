@@ -164,6 +164,38 @@ public:
 					}
 				}
 
+				// Judge a single character
+				if ((core_info.lexical_code[core_info.lexical_index] == '{' ||
+					core_info.lexical_code[core_info.lexical_index] == '['  ||
+					core_info.lexical_code[core_info.lexical_index] == '('  ||
+					core_info.lexical_code[core_info.lexical_index] == '}'  ||
+					core_info.lexical_code[core_info.lexical_index] == ']'  ||
+					core_info.lexical_code[core_info.lexical_index] == ')')  &&
+					core_info.lexical_token.token_string == "") {
+					core_info.lexical_token.token_string = core_info.lexical_code[core_info.lexical_index];
+
+					break;
+				}
+
+				// Processing string
+				if (core_info.lexical_code[core_info.lexical_index] == '\"' ||
+					core_info.lexical_code[core_info.lexical_index] == '\'') {
+					core_info.lexical_token.cache_token = CONST_STRING;
+
+					char head_character = core_info.lexical_code[core_info.lexical_index];
+
+					for (; core_info.lexical_index < core_info.lexical_code.size(); ++core_info.lexical_index) {
+						if (core_info.lexical_code[core_info.lexical_index] == '\\') {
+
+						}
+
+						if (core_info.lexical_code[core_info.lexical_index] == head_character) {
+							break;
+						}
+
+						core_info.lexical_token.token_string += core_info.lexical_code[core_info.lexical_index];
+					}
+				}
 			}
 		}
 	}

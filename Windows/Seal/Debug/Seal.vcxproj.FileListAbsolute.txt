@@ -1,0 +1,2 @@
+G:\Seal\1.0.0\Windows\Seal\Debug\Seal.exe
+G:\Seal\1.0.0\Windows\Seal\Debug\Seal.pdb
