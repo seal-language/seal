@@ -1,0 +1,1 @@
+Welcome to Seal, it our's Readme docmuent, Seal is a interpreted language, currently under development

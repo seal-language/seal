@@ -1,0 +1,3 @@
+- About
+  - [About Seal](./about.md)
+- [Development progress](./progress.md)
