@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <seal>
+      <version>
+          <number>1.0.0</number>
+          <codename>Seal Core M1</codename>
+          <description>This is the first version of Seal</description>
+          <is_rc_version>false</is_rc_version>
+          <attributes>alpha</attributes>
+      </version>
+
+      <author>Margoo</author>
+
+      <github>/seal-language/seal</github>
+  </seal>
+</note>
