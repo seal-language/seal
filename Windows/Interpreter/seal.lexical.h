@@ -146,8 +146,14 @@ public:
 
 					// If there is a continuous
 					if (core_info.lexical_index < core_info.lexical_code.size() &&
-						core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '=') {
-						core_info.lexical_token.token_string += '=';
+						(
+							core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '=' ||
+							(
+								core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]] == '-' &&
+								core_info.lexical_token.token_string == "<"
+							)
+						)) {
+						core_info.lexical_token.token_string += core_info.lexical_code[core_info.lexical_code[core_info.lexical_index]];
 
 						break;
 					}
