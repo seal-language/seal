@@ -46,7 +46,7 @@ typedef enum _lexical_token {
 	MIDDLE_LEFT_BRACKETS /* [ */, MIDDLE_RIGHT_BRACKETS, /* ] */
 	BIG_LEFT_BRACKETS /* { */, BIG_RIGHT_BRACKETS, /* } */
 
-	UNKOW_SMYBOL,
+	UNKNOW_SMYBOL,
 
 	SEMICOLON_TOKEN /* ; */, DOT_TOKEN /* . */, COMMA_TOKEN /* , */, COLON_TOKEN /* : */,
 	PLUS_SIGN_TOKEN /* + */, MINUS_SIGN_TOKEN /* - */, MULTIPLICATION_SIGN_TOKEN /* * */,
