@@ -1,1 +1,7 @@
 .vs/
+Debug/
+*.exe
+*.exe.recipe
+*.ilk
+*.log
+*.pdb
