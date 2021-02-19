@@ -72,4 +72,37 @@ typedef struct _ast_node_function_declaration_info {
 	std::vector<_ast_node_variable_declaration_info> parameter;
 } seal_ast_fnc_info;
 
+///////////////////////////////////////////////////////////
+//   _ast_node[typedef with seal_ast_node] :
+//          @description :   Single AST syntax tree node
+//          @birth       :   2021/2.17
+//          @operator    :   Margoo
+typedef struct _ast_node {
+	///////////////////////////////////////////////////////////
+	//   _ast_core[typedef with seal_ast_core] :
+	//          @description :   Core of AST syntax tree node
+	//          @birth       :   2021/2.17
+	//          @operator    :   Margoo
+	typedef struct _ast_core {
+		// Sibling node
+		_ast_node* next = nullptr;
+		// Lower node
+		_ast_node* lower_node = nullptr;
+	} seal_ast_core;
+
+	// AST content
+	seal_ast_exp_info expression_information;
+	seal_ast_fnc_info function_information;
+	seal_ast_var_info variable_information;
+
+	///////////////////////////////////////////////////////////////
+	// ast_iden_code   :                                      -| (Obsolete)
+	//          AST type identification code, through this     |
+	//          unsgiend short to identify the node type       |
+	// unsigned short ast_iden_code = 0x00;                   -|
+	std::string ast_iden_code = ""; // <- New solution
+
+	// AST node's core information
+	_ast_core core;
+} seal_ast_node;
 

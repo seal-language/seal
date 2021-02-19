@@ -678,4 +678,4 @@ public:
 	bool is_eof() {
 		return core_info.leixcal_eof;
 	}
-} seal_leixcal;
+} seal_lexcial;
