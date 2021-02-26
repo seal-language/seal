@@ -10,6 +10,8 @@
 //
 
 #include "seal.ast.node.h"
+#include "seal.ast.conf.h"
+
 #include "seal.lexical.h"
 
 ///////////////////////////////////////////////////////////////
@@ -19,6 +21,8 @@
 //          @operator    :   Margoo
 typedef class _ast_tree {
 private:
+	seal_ast_sts ast_status;
+
 	// Root node
 	seal_ast_node* root_node = nullptr;
 
@@ -46,6 +50,12 @@ public:
 		// Init core
 		core.script_code = script;
 		core.ast_lexical = seal_lexcial(script);
+
+		ast_status.error_information = new error_list;
+		ast_status.error_cursor = ast_status.error_information;
+
+		ast_status.warning_information = new warning_list;
+		ast_status.warning_cursor = ast_status.warning_information;
 	}
 
 	// Generate a syntax tree of one line of code
@@ -54,7 +64,26 @@ public:
 		while (!core.ast_lexical.is_eof()) {
 			core.temporary_token = core.ast_lexical.get_token();
 
+			switch (core.temporary_token.cache_token) {
+			// Meaningless quantitative single line
+			case CONST_NUMBER:
+			case CONST_STRING:
+				core.temporary_token = core.ast_lexical.get_token();
 
+				if (core.temporary_token.cache_token != SEMICOLON_TOKEN) {
+					ast_status.status_code = 0x01;
+				}
+
+				std::string error_string = std::string("Unexpected token \"") + core.temporary_token.token_string + "\"";
+
+				ast_status.error_cursor->error_string = error_string.c_str();
+
+				// These people deserve the time complexity of memory expansion for their bugs
+				ast_status.error_cursor->next = new error_list;
+				ast_status.error_cursor = ast_status.error_cursor->next;
+
+				break;
+			}
 		}
 	}
 } seal_ast;
