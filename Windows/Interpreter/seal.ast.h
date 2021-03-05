@@ -40,7 +40,7 @@ private:
 
 		// Temporary token (to prevent too frequent memory read consumption)
 		seal_leixcal_type_info::seal_leixcal_token temporary_token;
-	};
+	} seal_ast_core;
 
 	// Instantiate core
 	_ast_core core;

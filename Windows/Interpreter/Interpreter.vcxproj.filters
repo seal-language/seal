@@ -10,6 +10,18 @@
     <Filter Include="Lexical\Lexical">
       <UniqueIdentifier>{a466373d-c7c0-44b3-8a37-f4103c455a4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AST">
+      <UniqueIdentifier>{9e70bcc0-9ee0-4e24-ae52-d94d2382b615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AST\node">
+      <UniqueIdentifier>{73570e4b-50d1-4d5e-ba4b-8d75fda8e5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AST\config">
+      <UniqueIdentifier>{605540b2-bf44-4b7f-9691-3bc40dc1aad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AST\expression">
+      <UniqueIdentifier>{7d77118f-be9a-4519-b0a4-88aa7c38ddf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="seal.lexical.h">
@@ -18,6 +30,18 @@
     <ClInclude Include="seal.info.h" />
     <ClInclude Include="seal.lexical.token.h">
       <Filter>Lexical\Lexical</Filter>
+    </ClInclude>
+    <ClInclude Include="seal.ast.h">
+      <Filter>AST</Filter>
+    </ClInclude>
+    <ClInclude Include="seal.ast.node.h">
+      <Filter>AST\node</Filter>
+    </ClInclude>
+    <ClInclude Include="seal.ast.conf.h">
+      <Filter>AST\config</Filter>
+    </ClInclude>
+    <ClInclude Include="seal.ast.expression.h">
+      <Filter>AST\expression</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

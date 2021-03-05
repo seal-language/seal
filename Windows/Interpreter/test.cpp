@@ -1,4 +1,4 @@
-#include "seal.lexical.h"
+#include "seal.ast.h"
 
 int main() {
 	_lexical_core core_test("int a = [8]{ \"abc\", 1, 2, 3}");

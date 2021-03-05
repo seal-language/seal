@@ -13,15 +13,15 @@
 
 // Error and warning statement linked list
 struct error_list {
-	const char* error_string;
+	const char* error_string = "$";
 
-	error_list* next;
+	error_list* next = nullptr;
 };
 
 struct warning_list {
-	const char* warning_string;
+	const char* warning_string = "$";
 
-	warning_list* next;
+	warning_list* next = nullptr;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////

@@ -105,4 +105,3 @@ typedef struct _ast_node {
 	// AST node's core information
 	_ast_core core;
 } seal_ast_node;
-
