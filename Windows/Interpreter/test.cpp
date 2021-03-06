@@ -1,13 +1,9 @@
-#include "seal.ast.h"
+#include "seal.ast.expression.h"
 
 int main() {
-	_lexical_core core_test("int a = [8]{ \"abc\", 1, 2, 3}");
+	_ast_expression expression("a + (18054 + 78042 - (c - d + (8 * 7)))");
 
-	while (!core_test.is_eof()) {
-		seal_leixcal_type_info::seal_leixcal_token get_token = core_test.get_token();
-
-		printf("%s ", get_token.token_string.c_str());
-	}
+	expression.parse();
 
 	return 0;
 }

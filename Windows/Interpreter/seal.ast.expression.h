@@ -51,8 +51,6 @@ private:
 	}
 
 public:
-	bool __is_children = false;
-
 	_ast_expression(std::string exp_string)
 		: expr_string(exp_string) {
 		// Set error pointer cursor
@@ -62,13 +60,22 @@ public:
 		// Set warning pointer cursor
 		ast_status.warning_information = new warning_list;
 		ast_status.warning_cursor = ast_status.warning_information;
+
+		ast_lexical = seal_lexcial(exp_string);
 	}
 
+	// Parse AST tree
 	void parse() {
+		begin:
+
 		_lexical_info::seal_leixcal_token get_token = ast_lexical.get_token();
 
 		// If it is an unknown token, it may be a variable or a function call
 		if (get_token.cache_token == UNKNOW_TOKEN) {
+			if (root_node.expression_type != "Bracket Operation Priority 1") {
+				root_node.expression_type = "Variable Called";
+			}
+
 			// Initialize lvalue
 			root_node.left_value_tree = new seal_ast_exp_info;
 
@@ -81,26 +88,45 @@ public:
 			// If it is determined to be a variable operation
 			if (get_token.cache_token >= PLUS_SIGN_TOKEN &&
 				get_token.cache_token <= MODULO_SIGN_TOKEN) {
+				if (root_node.expression_type != "Bracket Operation Priority 1") {
+					root_node.expression_type = "Binary Expression";
+				}
+
 				root_node.operator_symbol = get_token.token_string;
 
 				// Create child ast tree
-				std::string sub_expression = expr_string.substr(1, expr_string.size() - 2);
+				std::string sub_expression;
+
+				while (!ast_lexical.is_eof()) {
+					get_token = ast_lexical.get_token();
+
+					sub_expression += get_token.token_string;
+				}
 
 				_ast_expression* sub_tree = new _ast_expression(sub_expression);
-
-				sub_tree->__is_children = true;
 
 				sub_tree->parse();
 
 				// If there is an error
-				if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") == 0) {
+				if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") != 0) {
 					error_list* error_info = sub_tree->ast_status.error_information;
 
 					_ADD_ERROR_INFO(error_info);
 				}
 				else {
-					root_node.right_value_tree = sub_tree->root_node.left_value_tree;
+					root_node.right_value_tree = new _ast_node_assignment_expression;
 
+					if (sub_tree->root_node.right_value_tree != nullptr) {
+						root_node.right_value_tree->left_value_tree = sub_tree->root_node.left_value_tree;
+						root_node.right_value_tree->right_value_tree = sub_tree->root_node.right_value_tree;
+
+						root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
+
+						root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
+					}
+					else {
+						root_node.right_value_tree = sub_tree->root_node.left_value_tree;
+					}
 				}
 			}
 			else if (get_token.cache_token == LEFT_BRACKETS) { // If it is a function call
@@ -108,13 +134,27 @@ public:
 
 				se_int stratum = 0;
 
-				for (std::string::iterator iterator = expr_string.begin();
-					 iterator != expr_string.end(); ++iterator) {
-					if (iterator.operator*() == '(') {
+				// Create subtree resolution
+				_ast_expression* sub_tree;
+
+				while (!ast_lexical.is_eof()) {
+					get_token = ast_lexical.get_token();
+
+					if (get_token.token_string == ",") {
+						sub_tree = new _ast_expression(sub_expression);
+
+						sub_tree->parse();
+
+						root_node.function_callee.calle_arguments.push_back(sub_tree->root_node);
+
+						sub_expression.clear();
+					}
+
+					if (get_token.token_string == "(") {
 						++stratum;
 					}
 
-					if (iterator.operator*() == ')') {
+					if (get_token.token_string == ")") {
 						if (stratum == 1) {
 							break;
 						}
@@ -122,12 +162,78 @@ public:
 							--stratum;
 						}
 					}
-
-					sub_expression.push_back(iterator.operator*());
+					else {
+						sub_expression += get_token.token_string;
+					}
 				}
 
-				// Create subtree resolution
+				root_node.left_value_tree->function_callee.called_identifier = root_node.left_value_tree->value;
+
+				
+			}
+		}
+		if (get_token.cache_token == LEFT_BRACKETS) { // If it is a parenthesis precedence operation
+			root_node.expression_type = "Bracket Operation Priority 1";
+
+			goto begin;
+		}
+		if (get_token.cache_token == CONST_NUMBER) {
+			if (root_node.expression_type != "Bracket Operation Priority 1") {
+				root_node.expression_type = "Const Number";
+			}
+
+			// Initialize lvalue
+			root_node.left_value_tree = new seal_ast_exp_info;
+
+			root_node.left_value_tree->value = get_token.token_string;
+
+			root_node.left_value_tree->expression_type = "Text";
+
+			get_token = ast_lexical.get_token();
+
+			// If it is determined to be a variable operation
+			if (get_token.cache_token >= PLUS_SIGN_TOKEN &&
+				get_token.cache_token <= MODULO_SIGN_TOKEN) {
+				if (root_node.expression_type != "Bracket Operation Priority 1") {
+					root_node.expression_type = "Binary Expression";
+				}
+
+				root_node.operator_symbol = get_token.token_string;
+
+				// Create child ast tree
+				std::string sub_expression;
+
+				while (!ast_lexical.is_eof()) {
+					get_token = ast_lexical.get_token();
+
+					sub_expression += get_token.token_string;
+				}
+
 				_ast_expression* sub_tree = new _ast_expression(sub_expression);
+
+				sub_tree->parse();
+
+				// If there is an error
+				if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") != 0) {
+					error_list* error_info = sub_tree->ast_status.error_information;
+
+					_ADD_ERROR_INFO(error_info);
+				}
+				else {
+					root_node.right_value_tree = new _ast_node_assignment_expression;
+
+					if (sub_tree->root_node.right_value_tree != nullptr) {
+						root_node.right_value_tree->left_value_tree = sub_tree->root_node.left_value_tree;
+						root_node.right_value_tree->right_value_tree = sub_tree->root_node.right_value_tree;
+
+						root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
+
+						root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
+					}
+					else {
+						root_node.right_value_tree = sub_tree->root_node.left_value_tree;
+					}
+				}
 			}
 		}
 	}

@@ -31,4 +31,4 @@
 		(!(object >= 'a' && object <= 'z') && !(object >= 'A' && object <= 'Z') \
 		&& !(object >= '0' && object <= '9') && object != '_')
 #define _MACRO_IS_NUMBER_(object) \
-		(object >= '0' && object <= '0')
+		(object >= '0' && object <= '9')

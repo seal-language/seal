@@ -402,269 +402,269 @@ public:
 				}
 			}
 
-			// Processing keyword token
-			if (core_info.lexical_token.token_string == "int") {
-				core_info.lexical_token.cache_token = INT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "bool") {
-				core_info.lexical_token.cache_token = BOOL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "string") {
-				core_info.lexical_token.cache_token = STRING_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "char") {
-				core_info.lexical_token.cache_token = CHAR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "float") {
-				core_info.lexical_token.cache_token = FLOAT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "def") {
-				core_info.lexical_token.cache_token = DEF_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "if") {
-				core_info.lexical_token.cache_token = IF_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "else") {
-				core_info.lexical_token.cache_token = ELSE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "elif") {
-				core_info.lexical_token.cache_token = ELIF_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "switch") {
-				core_info.lexical_token.cache_token = SWITCH_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "case") {
-				core_info.lexical_token.cache_token = CASE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "default") {
-				core_info.lexical_token.cache_token = DEFAULT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "while") {
-				core_info.lexical_token.cache_token = WHILE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "continue") {
-				core_info.lexical_token.cache_token = CONTINUE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "break") {
-				core_info.lexical_token.cache_token = BREAK_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "operator") {
-				core_info.lexical_token.cache_token = OPERATOR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "class") {
-				core_info.lexical_token.cache_token = CLASS_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "public") {
-				core_info.lexical_token.cache_token = PUBLIC_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "private") {
-				core_info.lexical_token.cache_token = PRIVATE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "return") {
-				core_info.lexical_token.cache_token = RETURN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "enum") {
-				core_info.lexical_token.cache_token = ENUM_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "using") {
-				core_info.lexical_token.cache_token = USING_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "from") {
-				core_info.lexical_token.cache_token = FROM_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "NULL") {
-				core_info.lexical_token.cache_token = NULL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "SAFENULL") {
-				core_info.lexical_token.cache_token = SAFENULL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "delete") {
-				core_info.lexical_token.cache_token = DELETE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "do") {
-				core_info.lexical_token.cache_token = DO_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "for") {
-				core_info.lexical_token.cache_token = FOR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "parad") {
-				core_info.lexical_token.cache_token = PARAD_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "static") {
-				core_info.lexical_token.cache_token = STATIC_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "new_static") {
-				core_info.lexical_token.cache_token = NEW_STATIC_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "un_gc") {
-				core_info.lexical_token.cache_token = UN_GC_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "force_delete") {
-				core_info.lexical_token.cache_token = FORCE_DELETE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "no_refer_count") {
-				core_info.lexical_token.cache_token = NO_REFER_COUNT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "no_old") {
-				core_info.lexical_token.cache_token = NO_OLD_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "const") {
-				core_info.lexical_token.cache_token = CONST_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "seal_library_type") {
-				core_info.lexical_token.cache_token = SEAL_LIBRARY_TYPE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "seal_library_function") {
-				core_info.lexical_token.cache_token = SEAL_LIBRARY_FUNCTION_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "seal_library_run_function") {
-				core_info.lexical_token.cache_token = SEAL_LIBRARY_RUN_FUNCTION_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "type_alias") {
-				core_info.lexical_token.cache_token = TYPE_ALIAS_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "tpye_define") {
-				core_info.lexical_token.cache_token = TYPE_DEFINE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "function") {
-				core_info.lexical_token.cache_token = FUNCTION_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "retr_for") {
-				core_info.lexical_token.cache_token = RETR_FOR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "namespace") {
-				core_info.lexical_token.cache_token = NAMESPACE_TOKEN;
-			}
-
-			// Processing token
-			if (core_info.lexical_token.token_string == "(") {
-				core_info.lexical_token.cache_token = LEFT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == ")") {
-				core_info.lexical_token.cache_token = RIGHT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == "[") {
-				core_info.lexical_token.cache_token = MIDDLE_LEFT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == "]") {
-				core_info.lexical_token.cache_token = MIDDLE_RIGHT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == "{") {
-				core_info.lexical_token.cache_token = BIG_LEFT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == "}") {
-				core_info.lexical_token.cache_token = BIG_RIGHT_BRACKETS;
-			}
-			else if (core_info.lexical_token.token_string == ";") {
-				core_info.lexical_token.cache_token = SEMICOLON_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ".") {
-				core_info.lexical_token.cache_token = DOT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ",") {
-				core_info.lexical_token.cache_token = COMMA_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ":") {
-				core_info.lexical_token.cache_token = COLON_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "+") {
-				core_info.lexical_token.cache_token = PLUS_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "-") {
-				core_info.lexical_token.cache_token = MINUS_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "*") {
-				core_info.lexical_token.cache_token = MULTIPLICATION_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "/") {
-				core_info.lexical_token.cache_token = SLASH_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "%") {
-				core_info.lexical_token.cache_token = MODULO_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "++") {
-				core_info.lexical_token.cache_token = DOUBLE_PLUS_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "--") {
-				core_info.lexical_token.cache_token = DOUBLE_MINUS_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "_") {
-				core_info.lexical_token.cache_token = UNDERSCORE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "=") {
-				core_info.lexical_token.cache_token = EQUAL_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "==") {
-				core_info.lexical_token.cache_token = DOUBLE_EQUAL_SIGN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "!") {
-				core_info.lexical_token.cache_token = EXCLAMATION_MARK;
-			}
-			else if (core_info.lexical_token.token_string == "!=") {
-				core_info.lexical_token.cache_token = NOT_EQUAL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ">") {
-				core_info.lexical_token.cache_token = MORE_THAN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "<") {
-				core_info.lexical_token.cache_token = LESS_THAN_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ">=") {
-				core_info.lexical_token.cache_token = MORE_THAN_EQUAL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "<=") {
-				core_info.lexical_token.cache_token = LESS_THAN_EQUAL_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "&") {
-				core_info.lexical_token.cache_token = VERSUS_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "&&") {
-				core_info.lexical_token.cache_token = LOGICALAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "|") {
-				core_info.lexical_token.cache_token = VERTICAL_BAR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "||") {
-				core_info.lexical_token.cache_token = LOGICAL_OR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "^") {
-				core_info.lexical_token.cache_token = CARET_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "~") {
-				core_info.lexical_token.cache_token = TILDE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "<<") {
-				core_info.lexical_token.cache_token = BR_LEFT_SHIFT_OPERATOR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == ">>") {
-				core_info.lexical_token.cache_token = BR_RIGHT_SHIFT_OPERATOR_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "+=") {
-				core_info.lexical_token.cache_token = ADDITIONAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "-=") {
-				core_info.lexical_token.cache_token = MINUSITIONAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "*=") {
-				core_info.lexical_token.cache_token = MULTIPLYAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "/=") {
-				core_info.lexical_token.cache_token = EXCEPTAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "&=") {
-				core_info.lexical_token.cache_token = BITWISEAND_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "<-") {
-				core_info.lexical_token.cache_token = INHERITANCE_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "^=") {
-				core_info.lexical_token.cache_token = BITWISEANDDIFFERENT_TOKEN;
-			}
-			else if (core_info.lexical_token.token_string == "|=") {
-				core_info.lexical_token.cache_token = BITWISE_OR_TOKEN;
-			}
-
 			core_info.lexical_token.token_string += core_info.lexical_code[core_info.lexical_index];
+		}
+
+		// Processing keyword token
+		if (core_info.lexical_token.token_string == "int") {
+			core_info.lexical_token.cache_token = INT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "bool") {
+			core_info.lexical_token.cache_token = BOOL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "string") {
+			core_info.lexical_token.cache_token = STRING_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "char") {
+			core_info.lexical_token.cache_token = CHAR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "float") {
+			core_info.lexical_token.cache_token = FLOAT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "def") {
+			core_info.lexical_token.cache_token = DEF_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "if") {
+			core_info.lexical_token.cache_token = IF_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "else") {
+			core_info.lexical_token.cache_token = ELSE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "elif") {
+			core_info.lexical_token.cache_token = ELIF_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "switch") {
+			core_info.lexical_token.cache_token = SWITCH_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "case") {
+			core_info.lexical_token.cache_token = CASE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "default") {
+			core_info.lexical_token.cache_token = DEFAULT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "while") {
+			core_info.lexical_token.cache_token = WHILE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "continue") {
+			core_info.lexical_token.cache_token = CONTINUE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "break") {
+			core_info.lexical_token.cache_token = BREAK_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "operator") {
+			core_info.lexical_token.cache_token = OPERATOR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "class") {
+			core_info.lexical_token.cache_token = CLASS_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "public") {
+			core_info.lexical_token.cache_token = PUBLIC_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "private") {
+			core_info.lexical_token.cache_token = PRIVATE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "return") {
+			core_info.lexical_token.cache_token = RETURN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "enum") {
+			core_info.lexical_token.cache_token = ENUM_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "using") {
+			core_info.lexical_token.cache_token = USING_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "from") {
+			core_info.lexical_token.cache_token = FROM_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "NULL") {
+			core_info.lexical_token.cache_token = NULL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "SAFENULL") {
+			core_info.lexical_token.cache_token = SAFENULL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "delete") {
+			core_info.lexical_token.cache_token = DELETE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "do") {
+			core_info.lexical_token.cache_token = DO_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "for") {
+			core_info.lexical_token.cache_token = FOR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "parad") {
+			core_info.lexical_token.cache_token = PARAD_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "static") {
+			core_info.lexical_token.cache_token = STATIC_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "new_static") {
+			core_info.lexical_token.cache_token = NEW_STATIC_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "un_gc") {
+			core_info.lexical_token.cache_token = UN_GC_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "force_delete") {
+			core_info.lexical_token.cache_token = FORCE_DELETE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "no_refer_count") {
+			core_info.lexical_token.cache_token = NO_REFER_COUNT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "no_old") {
+			core_info.lexical_token.cache_token = NO_OLD_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "const") {
+			core_info.lexical_token.cache_token = CONST_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "seal_library_type") {
+			core_info.lexical_token.cache_token = SEAL_LIBRARY_TYPE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "seal_library_function") {
+			core_info.lexical_token.cache_token = SEAL_LIBRARY_FUNCTION_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "seal_library_run_function") {
+			core_info.lexical_token.cache_token = SEAL_LIBRARY_RUN_FUNCTION_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "type_alias") {
+			core_info.lexical_token.cache_token = TYPE_ALIAS_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "tpye_define") {
+			core_info.lexical_token.cache_token = TYPE_DEFINE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "function") {
+			core_info.lexical_token.cache_token = FUNCTION_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "retr_for") {
+			core_info.lexical_token.cache_token = RETR_FOR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "namespace") {
+			core_info.lexical_token.cache_token = NAMESPACE_TOKEN;
+		}
+
+		// Processing token
+		if (core_info.lexical_token.token_string == "(") {
+			core_info.lexical_token.cache_token = LEFT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == ")") {
+			core_info.lexical_token.cache_token = RIGHT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == "[") {
+			core_info.lexical_token.cache_token = MIDDLE_LEFT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == "]") {
+			core_info.lexical_token.cache_token = MIDDLE_RIGHT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == "{") {
+			core_info.lexical_token.cache_token = BIG_LEFT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == "}") {
+			core_info.lexical_token.cache_token = BIG_RIGHT_BRACKETS;
+		}
+		else if (core_info.lexical_token.token_string == ";") {
+			core_info.lexical_token.cache_token = SEMICOLON_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ".") {
+			core_info.lexical_token.cache_token = DOT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ",") {
+			core_info.lexical_token.cache_token = COMMA_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ":") {
+			core_info.lexical_token.cache_token = COLON_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "+") {
+			core_info.lexical_token.cache_token = PLUS_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "-") {
+			core_info.lexical_token.cache_token = MINUS_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "*") {
+			core_info.lexical_token.cache_token = MULTIPLICATION_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "/") {
+			core_info.lexical_token.cache_token = SLASH_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "%") {
+			core_info.lexical_token.cache_token = MODULO_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "++") {
+			core_info.lexical_token.cache_token = DOUBLE_PLUS_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "--") {
+			core_info.lexical_token.cache_token = DOUBLE_MINUS_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "_") {
+			core_info.lexical_token.cache_token = UNDERSCORE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "=") {
+			core_info.lexical_token.cache_token = EQUAL_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "==") {
+			core_info.lexical_token.cache_token = DOUBLE_EQUAL_SIGN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "!") {
+			core_info.lexical_token.cache_token = EXCLAMATION_MARK;
+		}
+		else if (core_info.lexical_token.token_string == "!=") {
+			core_info.lexical_token.cache_token = NOT_EQUAL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ">") {
+			core_info.lexical_token.cache_token = MORE_THAN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "<") {
+			core_info.lexical_token.cache_token = LESS_THAN_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ">=") {
+			core_info.lexical_token.cache_token = MORE_THAN_EQUAL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "<=") {
+			core_info.lexical_token.cache_token = LESS_THAN_EQUAL_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "&") {
+			core_info.lexical_token.cache_token = VERSUS_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "&&") {
+			core_info.lexical_token.cache_token = LOGICALAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "|") {
+			core_info.lexical_token.cache_token = VERTICAL_BAR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "||") {
+			core_info.lexical_token.cache_token = LOGICAL_OR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "^") {
+			core_info.lexical_token.cache_token = CARET_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "~") {
+			core_info.lexical_token.cache_token = TILDE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "<<") {
+			core_info.lexical_token.cache_token = BR_LEFT_SHIFT_OPERATOR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == ">>") {
+			core_info.lexical_token.cache_token = BR_RIGHT_SHIFT_OPERATOR_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "+=") {
+			core_info.lexical_token.cache_token = ADDITIONAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "-=") {
+			core_info.lexical_token.cache_token = MINUSITIONAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "*=") {
+			core_info.lexical_token.cache_token = MULTIPLYAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "/=") {
+			core_info.lexical_token.cache_token = EXCEPTAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "&=") {
+			core_info.lexical_token.cache_token = BITWISEAND_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "<-") {
+			core_info.lexical_token.cache_token = INHERITANCE_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "^=") {
+			core_info.lexical_token.cache_token = BITWISEANDDIFFERENT_TOKEN;
+		}
+		else if (core_info.lexical_token.token_string == "|=") {
+			core_info.lexical_token.cache_token = BITWISE_OR_TOKEN;
 		}
 
 		return core_info.lexical_token;
@@ -677,5 +677,14 @@ public:
 	//           
 	bool is_eof() {
 		return core_info.leixcal_eof;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//    get_index  :
+	//           @description :   Get index position
+	//           @birth       :   2021/3.5
+	//  
+	se_int get_index() {
+		return core_info.lexical_index;
 	}
 } seal_lexcial;

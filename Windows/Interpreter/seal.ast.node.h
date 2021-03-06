@@ -36,6 +36,9 @@ typedef struct _ast_node_assignment_expression {
 	// Inverse Polish expression rvalue
 	_ast_node_assignment_expression* right_value_tree = nullptr;
 
+	// Function callee
+	sealcallee_exp_info function_callee;
+
 	// Median (i.e. operator)
 	std::string operator_symbol = "";
 
