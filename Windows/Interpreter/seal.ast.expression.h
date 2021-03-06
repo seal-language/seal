@@ -114,28 +114,31 @@ public:
 					_ADD_ERROR_INFO(error_info);
 				}
 				else {
-					root_node.right_value_tree = new _ast_node_assignment_expression;
-
 					if (sub_tree->root_node.right_value_tree != nullptr) {
 						root_node.right_value_tree->left_value_tree = sub_tree->root_node.left_value_tree;
 						root_node.right_value_tree->right_value_tree = sub_tree->root_node.right_value_tree;
-
-						root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
-
-						root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
 					}
 					else {
 						root_node.right_value_tree = sub_tree->root_node.left_value_tree;
 					}
+
+					root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
+					root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
+
+					root_node.right_value_tree->function_callee = sub_tree->root_node.function_callee;
 				}
 			}
-			else if (get_token.cache_token == LEFT_BRACKETS) { // If it is a function call
+			if (get_token.cache_token == LEFT_BRACKETS) { // If it is a function call
+				root_node.expression_type = "Function Called";
+
 				std::string sub_expression;
 
 				se_int stratum = 0;
 
 				// Create subtree resolution
 				_ast_expression* sub_tree;
+
+				bool have_terminator = false;
 
 				while (!ast_lexical.is_eof()) {
 					get_token = ast_lexical.get_token();
@@ -145,9 +148,16 @@ public:
 
 						sub_tree->parse();
 
-						root_node.function_callee.calle_arguments.push_back(sub_tree->root_node);
+						if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") != 0) {
+							error_list* error_info = sub_tree->ast_status.error_information;
 
-						sub_expression.clear();
+							_ADD_ERROR_INFO(error_info);
+						}
+						else {
+							root_node.function_callee.calle_arguments.push_back(std::move(&sub_tree->root_node));
+
+							sub_expression.clear();
+						}
 					}
 
 					if (get_token.token_string == "(") {
@@ -155,7 +165,9 @@ public:
 					}
 
 					if (get_token.token_string == ")") {
-						if (stratum == 1) {
+						if (stratum == 0) {
+							have_terminator = true;
+
 							break;
 						}
 						else {
@@ -167,9 +179,103 @@ public:
 					}
 				}
 
-				root_node.left_value_tree->function_callee.called_identifier = root_node.left_value_tree->value;
+				if (have_terminator == false) {
+					ast_status.error_cursor->error_string = "The terminator \')\' not found";
 
-				
+					ast_status.error_cursor->next = new error_list;
+					ast_status.error_cursor = ast_status.error_cursor->next;
+				}
+
+				if (sub_expression.empty() == false) {
+					sub_tree = new _ast_expression(sub_expression);
+
+					sub_tree->parse();
+
+					if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") != 0) {
+						error_list* error_info = sub_tree->ast_status.error_information;
+
+						_ADD_ERROR_INFO(error_info);
+					}
+					else {
+						root_node.function_callee.calle_arguments.push_back(std::move(&sub_tree->root_node));
+
+						sub_expression.clear();
+					}
+				}
+
+				root_node.function_callee.called_identifier = root_node.left_value_tree->value;
+			}
+			if (get_token.cache_token == MIDDLE_LEFT_BRACKETS) { // Array called
+				root_node.left_value_tree->expression_type = "Array Called";
+
+				root_node.left_value_tree->array_expr = new _ast_node_assignment_expression;
+
+				std::string array_called_expression;
+
+				se_int bracket_level = 0;
+
+				bool have_terminator = false;
+
+				while (!ast_lexical.is_eof()) {
+					get_token = ast_lexical.get_token();
+
+					if (get_token.cache_token == MIDDLE_RIGHT_BRACKETS) {
+						if (bracket_level == 0) {
+							have_terminator = true;
+
+							break;
+						}
+						else {
+							--bracket_level;
+						}
+					}
+
+					if (get_token.cache_token == MIDDLE_LEFT_BRACKETS) {
+						++bracket_level;
+					}
+
+					array_called_expression += get_token.token_string;
+				}
+
+				if (have_terminator == false) {
+					ast_status.error_cursor->error_string = "The terminator '\]\' not found";
+
+					ast_status.error_cursor->next = new error_list;
+					ast_status.error_cursor = ast_status.error_cursor->next;
+				}
+
+				_ast_expression* sub_tree = new _ast_expression(array_called_expression);
+
+				sub_tree->parse();
+
+				if (strcmp(sub_tree->ast_status.error_cursor->error_string, "$") != 0) {
+					error_list* error_info = sub_tree->ast_status.error_information;
+
+					_ADD_ERROR_INFO(error_info);
+				}
+				else {
+					if (sub_tree->root_node.right_value_tree != nullptr) {
+						root_node.left_value_tree->array_expr->left_value_tree = sub_tree->root_node.left_value_tree;
+						root_node.left_value_tree->array_expr->right_value_tree = sub_tree->root_node.right_value_tree;
+					}
+					else {
+						root_node.left_value_tree->array_expr->right_value_tree = sub_tree->root_node.left_value_tree;
+					}
+
+					root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
+					root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
+
+					root_node.right_value_tree->function_callee = sub_tree->root_node.function_callee;
+				}
+			}
+			else {
+				std::string error_information("Unexpected identifier");
+				error_information += get_token.token_string;
+
+				ast_status.error_cursor->error_string = error_information.c_str();
+
+				ast_status.error_cursor->next = new error_list;
+				ast_status.error_cursor = ast_status.error_cursor->next;
 			}
 		}
 		if (get_token.cache_token == LEFT_BRACKETS) { // If it is a parenthesis precedence operation
@@ -225,14 +331,15 @@ public:
 					if (sub_tree->root_node.right_value_tree != nullptr) {
 						root_node.right_value_tree->left_value_tree = sub_tree->root_node.left_value_tree;
 						root_node.right_value_tree->right_value_tree = sub_tree->root_node.right_value_tree;
-
-						root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
-
-						root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
 					}
 					else {
 						root_node.right_value_tree = sub_tree->root_node.left_value_tree;
 					}
+
+					root_node.right_value_tree->operator_symbol = sub_tree->root_node.operator_symbol;
+					root_node.right_value_tree->expression_type = sub_tree->root_node.expression_type;
+
+					root_node.right_value_tree->function_callee = sub_tree->root_node.function_callee;
 				}
 			}
 		}

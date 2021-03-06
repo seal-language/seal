@@ -1,7 +1,7 @@
 #include "seal.ast.expression.h"
 
 int main() {
-	_ast_expression expression("a + (18054 + 78042 - (c - d + (8 * 7)))");
+	_ast_expression expression("80 + c(80 + 70)");
 
 	expression.parse();
 

@@ -1,0 +1,8 @@
+int get_input = input();
+
+if (get_input == 114514) {
+    print("What did you enter!?!?!?");
+}
+elif (get_input == 1919817) {
+    print();
+}

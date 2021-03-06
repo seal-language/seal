@@ -28,13 +28,16 @@ typedef struct _ast_node_assignment_expression {
 		std::string called_identifier = "";
 
 		// Callee arguments expression
-		std::vector<_ast_node_assignment_expression> calle_arguments;
+		std::vector<_ast_node_assignment_expression*> calle_arguments;
 	} sealcallee_exp_info;
 
 	// Inverse Polish expression lvalue
 	_ast_node_assignment_expression* left_value_tree  = nullptr;
 	// Inverse Polish expression rvalue
 	_ast_node_assignment_expression* right_value_tree = nullptr;
+
+	// Array called expression
+	_ast_node_assignment_expression* array_expr = nullptr;
 
 	// Function callee
 	sealcallee_exp_info function_callee;
