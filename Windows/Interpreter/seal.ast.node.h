@@ -39,6 +39,9 @@ typedef struct _ast_node_assignment_expression {
 	// Array called expression
 	_ast_node_assignment_expression* array_expr = nullptr;
 
+	// Unitary expression ast tree
+	_ast_node_assignment_expression* unitary_expr = nullptr;
+
 	// Function callee
 	sealcallee_exp_info function_callee;
 
@@ -47,6 +50,9 @@ typedef struct _ast_node_assignment_expression {
 
 	// Indicates the language type
 	std::string expression_type = "";
+
+	// Priority of operations
+	short priority = 0;
 
 	// If there is no need to store in a tree structure, then the corresponding value is
 	std::string value = "";
